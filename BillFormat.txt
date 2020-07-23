@@ -1,0 +1,16 @@
+QTY = 2
+SELLING = 200 * QTY
+
+
+if 5%
+BASIC = 200 * (100/105) * QTY
+BASIC = 190.48
+
+
+TAX = SELLING - BASIC 
+    = 9.52
+
+CGST = TAX / 2 = 9.52 / 2 = 4.76
+SGST = TAX / 2 = 9.52 / 2 = 4.76
+
+TOTAL PRICE = SELLING * QTY
