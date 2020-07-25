@@ -519,24 +519,43 @@ public class EntryBillFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_chckGSTINActionPerformed
 
     private void btnClearBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearBillActionPerformed
-        lblError.setText("");
-        txtAreaAddress.setText("");
-        txtCustName.setText("");
-        txtGSTIN.setText("");
-        txtGSTIN.setEnabled(false);
-        txtHsnCode.setText("");
-        chckGSTIN.setSelected(false);
-        txtItemName.setText("");
-        txtMobileNumber.setText("");
-        txtPrice.setText("");
-        txtQuantity.setText("");
-        txtTotalAmount.setText("");
-        cmbQuantity.setSelectedIndex(0);
-        cmbItem.setSelectedIndex(0);
-        
-        DefaultTableModel tbl = (DefaultTableModel) tblBill.getModel();
-        tbl.setRowCount(0);
 
+        try 
+        {
+            int i = JOptionPane.showConfirmDialog(null,"Are you sure, you want to clear this bill?");
+            if(i==0)
+            {
+                    lblError.setText("");
+                    txtAreaAddress.setText("");
+                    txtCustName.setText("");
+                    txtGSTIN.setText("");
+                    txtGSTIN.setEnabled(false);
+                    txtHsnCode.setText("");
+                    chckGSTIN.setSelected(false);
+                    txtItemName.setText("");
+                    txtMobileNumber.setText("");
+                    txtPrice.setText("");
+                    txtQuantity.setText("");
+                    txtTotalAmount.setText("");
+                    cmbQuantity.setSelectedIndex(0);
+                    cmbItem.setSelectedIndex(0);
+
+                    DefaultTableModel tbl = (DefaultTableModel) tblBill.getModel();
+                    tbl.setRowCount(0);
+                    
+                    String del = "DELETE FROM BILL WHERE BILLNO = '"+cust_billno+"'";
+                    stmt.executeUpdate(del);
+                    
+                    String delBill = "DELETE FROM USER WHERE BILLNO = '"+cust_billno+"'";
+                    stmt.executeUpdate(delBill);
+                    JOptionPane.showMessageDialog(null, "Bill deleted!");
+            }
+        }
+        
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_btnClearBillActionPerformed
 
     private void btnAddItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddItemActionPerformed
@@ -557,25 +576,38 @@ public class EntryBillFrame extends javax.swing.JFrame {
         DecimalFormat f = new DecimalFormat("##.00");
         
         //Fetching Item Details
+        int quantity = 0;
+        double selling_price = 0;
         String hsn_code = txtHsnCode.getText().trim();
         String item_name = txtItemName.getText().trim();
-        int quantity = Integer.parseInt(txtQuantity.getText().trim());
-        double selling_price = Double.parseDouble(txtPrice.getText().trim());
+        if(!txtQuantity.getText().equals(""))
+        {quantity = Integer.parseInt(txtQuantity.getText().trim());}
+        if(!txtPrice.getText().equals(""))
+        {selling_price = Double.parseDouble(txtPrice.getText().trim());}
         String qty_item = quantity + " " + cmbQuantity.getSelectedItem().toString().trim();
         try 
         {
             //Saving User Details only once
-            if(flag == 0 && !(cust_billno.equals("") && cust_name.equals("") && cust_mobile.equals("") && cust_address.equals("") && cust_mobile.length() == 10))
+            if(flag == 0 && !(cust_billno.equals("") || cust_name.equals("") || cust_mobile.equals("") || cust_address.equals("") || cust_mobile.length() != 10))
             {
-                
                     lblError.setText("");
                     String qry = "INSERT INTO USER(BILLNO, NAME, CONTACT_NO, ADDRESS, GSTIN, TOTAL_AMOUNT) VALUES ('"+cust_billno+"','"+cust_name+"','"+cust_mobile+"','"+cust_address+"','"+cust_gstin+"',"+0.0+")";
                     stmt.executeUpdate(qry);
                     flag = 1;
+                    
             }
             else
             {
+                if(flag == 1 && !(cust_billno.equals("") || cust_name.equals("") || cust_mobile.equals("") || cust_address.equals("") || cust_mobile.length() != 10))
+                {
                     lblError.setText("Please Enter all the details");
+                }
+                else
+                {
+                    lblError.setText("Please Enter all the details");
+                    return;
+                }
+                    
             }
             
             //Fetching Tax SLAB from DB
@@ -585,7 +617,8 @@ public class EntryBillFrame extends javax.swing.JFrame {
             rs.first();
             tax_slab = Double.parseDouble(rs.getString("TAX_SLAB"));
             
-           
+           if(!(cust_billno.equals("") || hsn_code.equals("") || item_name.equals("") || qty_item.equals("") || txtPrice.getText().equals("") || txtQuantity.getText().equals("")))
+           { 
             //Calculating Basic Price of an Item
             double basic_price = 0,cgst = 0, sgst = 0, total_price = 0;
             
@@ -601,8 +634,7 @@ public class EntryBillFrame extends javax.swing.JFrame {
             total_price = selling_price * quantity;
             total_price = Double.parseDouble(f.format(total_price));
             
-            if(!(cust_billno.equals("") && hsn_code.equals("") && item_name.equals("") && qty_item.equals("") && tax_slab == 0 && selling_price == 0 && basic_price == 0 && cgst == 0 && sgst == 0 && total_price == 0))
-            {
+            
             lblError.setText("");
             String query = "INSERT INTO BILL (BILLNO, HSN_CODE, ITEM_NAME, QUANTITY, TAX_SLAB, SELLING_PRICE,"
                     + " BASIC_PRICE, CGST, SGST, TOTAL_PRICE) VALUES ('"+cust_billno+"','"+hsn_code+"','"+item_name+"','"+qty_item+"',"+tax_slab+","+selling_price+","+basic_price+","+cgst+","+sgst+","+total_price+")";
@@ -615,13 +647,12 @@ public class EntryBillFrame extends javax.swing.JFrame {
             txtPrice.setText("");
             
             calculateTotal();
-            
             }
             else
             {
                 lblError.setText("Please Enter all the details");
+      
             }
-            
         }
         
         catch (Exception e)
@@ -637,12 +668,19 @@ public class EntryBillFrame extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) tblBill.getModel();
             int select = tblBill.getSelectedRow();
 
+            if(select != -1)
+            {
             String hsn_code =  (tblBill.getModel().getValueAt(select,1).toString());
             String qry = "DELETE FROM BILL WHERE HSN_CODE ='"+hsn_code+"' AND BILLNO ='"+cust_billno+"'";
             stmt.executeUpdate(qry);
 
             model.removeRow(select);
             calculateTotal();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null,"Please select an item to remove.");
+            }
         }
         catch (Exception e)
         {

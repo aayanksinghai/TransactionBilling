@@ -246,6 +246,8 @@ public class SearchBillFrame extends javax.swing.JFrame {
        
         try 
         {
+            if(!searchval.equals(""))
+            {
             if(searchopt.equals("CONTACT_NO") && searchval.length() == 10)
             {
               String s = "SELECT * FROM USER WHERE "+searchopt+" = '"+searchval+"' ";
@@ -287,6 +289,11 @@ public class SearchBillFrame extends javax.swing.JFrame {
             else
             {
                 lblError.setText("Bill Not Found!");
+            }
+            }
+            else
+            {
+                lblError.setText("Please enter the detail!");
             }
         }
         catch (Exception e)

@@ -177,7 +177,7 @@ public class ViewStocksFrame extends javax.swing.JFrame {
             int select = tblStock.getSelectedRow();
             if(select == -1)
             {
-                
+                JOptionPane.showMessageDialog(null,"Please select an item!");
             }
             else
             {

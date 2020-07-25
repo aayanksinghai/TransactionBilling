@@ -448,7 +448,7 @@ public class AddStocksFrame extends javax.swing.JFrame {
         
         try 
         {
-            if(!(hsn_code.equals("")) && !(item_name.equals("")))
+            if(!(hsn_code.equals("") || item_name.equals("")))
             {
                 int i = JOptionPane.showConfirmDialog(null, "Are you sure you want to add '"+item_name+"' in the stock?");
                 if(i == 0)
@@ -496,7 +496,7 @@ public class AddStocksFrame extends javax.swing.JFrame {
             item_name = rs.getString("ITEM_NAME");
             tax_slab = rs.getString("TAX_SLAB");
             txtcode.setText(rs.getString("ITEM_NO"));
-            
+            lblError.setText("");
             txtHSN.setText(hsn_code);
             txtItem.setText(item_name);
             //System.out.println(hsn_code + item_name + tax_slab);
@@ -529,38 +529,52 @@ public class AddStocksFrame extends javax.swing.JFrame {
         //String hsn_code, item_name, tax_slab;
         try 
         {
-            rs.next();
+         if(!(txtItem.getText().equals("") || txtHSN.getText().equals("")))
+         {
             
-            hsn_code = rs.getString("HSN_CODE");
-            item_name = rs.getString("ITEM_NAME");
-            tax_slab = rs.getString("TAX_SLAB");
-            txtcode.setText(rs.getString("ITEM_NO"));
+                if(rs.next())
+                    {
+                    lblError.setText("");
+                    hsn_code = rs.getString("HSN_CODE");
+                    item_name = rs.getString("ITEM_NAME");
+                    tax_slab = rs.getString("TAX_SLAB");
+                    txtcode.setText(rs.getString("ITEM_NO"));
 
-            txtHSN.setText(hsn_code);
-            txtItem.setText(item_name);
-            //System.out.println(hsn_code + item_name + tax_slab);
-            if("0".equals(tax_slab))
-            {
-                cmbTax.setSelectedIndex(0);
-            }
-            else if("5".equals(tax_slab))
-            {
-                cmbTax.setSelectedIndex(1);
-            }
-            else if("12".equals(tax_slab))
-            {
-                cmbTax.setSelectedIndex(2);
-            }
-            else if("18".equals(tax_slab))
-            {
-                cmbTax.setSelectedIndex(3);
-            }
-            else
-            {
-                cmbTax.setSelectedIndex(0);
-            }    
-             
+                    txtHSN.setText(hsn_code);
+                    txtItem.setText(item_name);
+                    //System.out.println(hsn_code + item_name + tax_slab);
+                    if("0".equals(tax_slab))
+                    {
+                        cmbTax.setSelectedIndex(0);
+                    }
+                    else if("5".equals(tax_slab))
+                    {
+                        cmbTax.setSelectedIndex(1);
+                    }
+                    else if("12".equals(tax_slab))
+                    {
+                        cmbTax.setSelectedIndex(2);
+                    }
+                    else if("18".equals(tax_slab))
+                    {
+                        cmbTax.setSelectedIndex(3);
+                    }
+                    else
+                    {
+                        cmbTax.setSelectedIndex(0);
+                    } 
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "You're at the end of the list"); 
+                }
+         }
+         else
+         {
+         lblError.setText("Please fill the details");
+         }
             
+           
         } 
         catch (Exception e) 
         {
@@ -573,36 +587,50 @@ public class AddStocksFrame extends javax.swing.JFrame {
         //String hsn_code, item_name, tax_slab;
         try 
         {
-            rs.previous();
-            
-            hsn_code = rs.getString("HSN_CODE");
-            item_name = rs.getString("ITEM_NAME");
-            tax_slab = rs.getString("TAX_SLAB");
-            txtcode.setText(rs.getString("ITEM_NO"));
-            
-            txtHSN.setText(hsn_code);
-            txtItem.setText(item_name);
-            //System.out.println(hsn_code + item_name + tax_slab);
-            if("0".equals(tax_slab))
+           if(!(txtItem.getText().equals("") || txtHSN.getText().equals("")))
             {
-                cmbTax.setSelectedIndex(0);
+                if(rs.previous())
+                { 
+                    lblError.setText("");
+                    hsn_code = rs.getString("HSN_CODE");
+                    item_name = rs.getString("ITEM_NAME");
+                    tax_slab = rs.getString("TAX_SLAB");
+                    txtcode.setText(rs.getString("ITEM_NO"));
+
+                    txtHSN.setText(hsn_code);
+                    txtItem.setText(item_name);
+                    //System.out.println(hsn_code + item_name + tax_slab);
+                    if("0".equals(tax_slab))
+                    {
+                        cmbTax.setSelectedIndex(0);
+                    }
+                    else if("5".equals(tax_slab))
+                    {
+                        cmbTax.setSelectedIndex(1);
+                    }
+                    else if("12".equals(tax_slab))
+                    {
+                        cmbTax.setSelectedIndex(2);
+                    }
+                    else if("18".equals(tax_slab))
+                    {
+                        cmbTax.setSelectedIndex(3);
+                    }
+                    else
+                    {
+                        cmbTax.setSelectedIndex(0);
+                    }
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "You're at the end of the list");
+                }
             }
-            else if("5".equals(tax_slab))
-            {
-                cmbTax.setSelectedIndex(1);
-            }
-            else if("12".equals(tax_slab))
-            {
-                cmbTax.setSelectedIndex(2);
-            }
-            else if("18".equals(tax_slab))
-            {
-                cmbTax.setSelectedIndex(3);
-            }
-            else
-            {
-                cmbTax.setSelectedIndex(0);
-            }    
+           else
+           {
+            lblError.setText("Please fill the details!");
+           }
+                 
              
             
         } 
@@ -616,47 +644,57 @@ public class AddStocksFrame extends javax.swing.JFrame {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
 
-         hsn_code = txtHSN.getText().toUpperCase().trim();
-         item_name = txtItem.getText().toUpperCase().trim();
-        int item_code = Integer.parseInt(txtcode.getText().trim());
+        hsn_code = txtHSN.getText().toUpperCase().trim();
+        item_name = txtItem.getText().toUpperCase().trim();
         
-        tax_slab = cmbTax.getSelectedItem().toString();
-        String tax[] = tax_slab.split("%");
-        double tax_rate = Double.parseDouble(tax[0]);
         
-        try 
+        if(!(item_name.equals("") || hsn_code.equals("")))
         {
-            if(!(hsn_code.equals("")) && !(item_name.equals("")))
-            {
-            int i = JOptionPane.showConfirmDialog(null, "Are you sure you want to update this '"+item_name+"' in the stock?");
-            if(i == 0)
-            {
-            String s = "UPDATE STOCKS SET HSN_CODE = '"+hsn_code+"', ITEM_NAME = '"+item_name+"', TAX_SLAB = "+tax_rate+" WHERE ITEM_NO = "+item_code+" ";
-            stmt.executeUpdate(s);
-            JOptionPane.showMessageDialog(null, "ITEM UPDATED");
-            }
-            
-            }
-            else
-            {
-                lblError.setText("Please fill the required details");
-            }    
-        } 
-        catch (Exception e) 
-        {
-            JOptionPane.showMessageDialog(null, e);
+                    int item_code = Integer.parseInt(txtcode.getText().trim());
+                    tax_slab = cmbTax.getSelectedItem().toString();
+                    String tax[] = tax_slab.split("%");
+                    double tax_rate = Double.parseDouble(tax[0]);
+
+                    try 
+                    {
+                        if(!(hsn_code.equals("")) && !(item_name.equals("")))
+                        {
+                        int i = JOptionPane.showConfirmDialog(null, "Are you sure you want to update this '"+item_name+"' in the stock?");
+                            if(i == 0)
+                            {
+                            String s = "UPDATE STOCKS SET HSN_CODE = '"+hsn_code+"', ITEM_NAME = '"+item_name+"', TAX_SLAB = "+tax_rate+" WHERE ITEM_NO = "+item_code+" ";
+                            stmt.executeUpdate(s);
+                            JOptionPane.showMessageDialog(null, "ITEM UPDATED");
+                            }
+
+                        }
+                        else
+                        {
+                            lblError.setText("Please fill the required details");
+                        }    
+                    } 
+                    catch (Exception e) 
+                    {
+                        JOptionPane.showMessageDialog(null, e);
+                    }
         }
+        else
+        {
+         lblError.setText("Please fill the details");        
+        }
+       
            
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
 
-        int item_code = Integer.parseInt(txtcode.getText().trim());
+        
       
         try 
         {
-            if(!("".equals(txtItem.getText())) && !("".equals(txtHSN.getText())))
+            if(!(txtItem.getText().equals("") || txtHSN.getText().equals("")))
             {
+            int item_code = Integer.parseInt(txtcode.getText().trim());
             int i = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this '"+txtItem.getText()+"' from the stock?");
             if(i == 0)
             {
