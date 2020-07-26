@@ -10,10 +10,19 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.util.UUID;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 
 public class EntryBillFrame extends javax.swing.JFrame {
@@ -699,8 +708,10 @@ public class EntryBillFrame extends javax.swing.JFrame {
                 String query = "UPDATE USER SET TOTAL_AMOUNT = "+total_amount+" WHERE BILLNO = '"+cust_billno+"'";
                 stmt.executeUpdate(query);
                 JOptionPane.showMessageDialog(null, "YOUR BILL IS GENERATED SUCCESSFULLY");
+                /*
                 new BillFrame(cust_billno).setVisible(true);
                 dispose();
+                */
             }
         }
         catch (Exception e)
@@ -708,6 +719,35 @@ public class EntryBillFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
         
+        // Generating JASPER REPORTS TRIAL
+        try
+        {
+            JasperDesign jasdi=JRXmlLoader.load("C:\\Users\\HP\\Documents\\NetBeansProjects\\TransactionBilling\\src\\mypackage\\BillReceipt.jrxml");
+            String billquery = "SELECT USER.BILLNO, USER.NAME, USER.CONTACT_NO, USER.ADDRESS, USER.GSTIN, USER.BILL_DATE, USER.TOTAL_AMOUNT, BILL.HSN_CODE, BILL.ITEM_NAME, BILL.QUANTITY, BILL.TAX_SLAB, BILL.SELLING_PRICE, BILL.BASIC_PRICE, BILL.CGST, BILL.SGST, BILL.TOTAL_PRICE FROM BILL, USER WHERE USER.BILLNO = BILL.BILLNO AND BILL.BILLNO = '"+cust_billno+"'";
+            
+           // String billquery = "SELECT * FROM USER WHERE BILLNO = '"+cust_billno+"'";
+            JRDesignQuery newQuery = new JRDesignQuery();
+            newQuery.setText(billquery);
+            jasdi.setQuery(newQuery);
+            
+            HashMap<String, Object> para = new HashMap<>();
+            para.put("BILL.BILLNO",cust_billno);
+            /*
+            para.put("USER.NAME",cust_name);
+            para.put("USER.CONTACT_NO",cust_mobile);
+            para.put("USER.ADDRESS",cust_address);
+            para.put("USER.GSTIN",cust_gstin);
+            */
+            
+            JasperReport js=JasperCompileManager.compileReport(jasdi);
+            JasperPrint jp=JasperFillManager.fillReport(js,para,con);
+            // JasperExportManager.exportReportToHtmlFile(jp ,ore);
+            JasperViewer.viewReport(jp);
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
     }//GEN-LAST:event_btnGenerateBillActionPerformed
 
     private void cmbItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbItemActionPerformed

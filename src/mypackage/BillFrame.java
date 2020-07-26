@@ -26,6 +26,7 @@ public class BillFrame extends javax.swing.JFrame {
         try{
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/BILLING","root","root");
             stmt = con.createStatement();
+            
            }
         catch(Exception e)
         {
