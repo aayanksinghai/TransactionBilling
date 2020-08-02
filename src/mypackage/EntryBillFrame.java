@@ -365,11 +365,13 @@ public class EntryBillFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblBill.setColumnSelectionAllowed(true);
         tblBill.setRowHeight(22);
         tblBill.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblBill.getTableHeader().setResizingAllowed(false);
         tblBill.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tblBill);
+        tblBill.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (tblBill.getColumnModel().getColumnCount() > 0) {
             tblBill.getColumnModel().getColumn(0).setMinWidth(50);
             tblBill.getColumnModel().getColumn(0).setMaxWidth(100);
@@ -712,10 +714,29 @@ public class EntryBillFrame extends javax.swing.JFrame {
                 String query = "UPDATE USER SET TOTAL_AMOUNT = "+total_amount+" WHERE BILLNO = '"+cust_billno+"'";
                 stmt.executeUpdate(query);
                 JOptionPane.showMessageDialog(null, "YOUR BILL IS GENERATED SUCCESSFULLY");
+               
+                 // Generating JASPER REPORTS TRIAL
+                 JasperDesign jasdi=JRXmlLoader.load("C:\\Users\\HP\\Documents\\NetBeansProjects\\TransactionBilling\\src\\mypackage\\BillReceipt.jrxml");
+                String billquery = "SELECT USER.BILLNO, USER.NAME, USER.CONTACT_NO, USER.ADDRESS, USER.GSTIN, USER.BILL_DATE, USER.TOTAL_AMOUNT, BILL.HSN_CODE, BILL.ITEM_NAME, BILL.QUANTITY, BILL.TAX_SLAB, BILL.SELLING_PRICE, BILL.BASIC_PRICE, BILL.CGST, BILL.SGST, BILL.TOTAL_PRICE FROM BILL, USER WHERE USER.BILLNO = BILL.BILLNO AND BILL.BILLNO = '"+cust_billno+"'";
+
+               // String billquery = "SELECT * FROM USER WHERE BILLNO = '"+cust_billno+"'";
+                JRDesignQuery newQuery = new JRDesignQuery();
+                newQuery.setText(billquery);
+                jasdi.setQuery(newQuery);
+
+                HashMap<String, Object> para = new HashMap<>();
+                para.put("BILL.BILLNO",cust_billno);
                 /*
-                new BillFrame(cust_billno).setVisible(true);
-                dispose();
+                para.put("USER.NAME",cust_name);
+                para.put("USER.CONTACT_NO",cust_mobile);
+                para.put("USER.ADDRESS",cust_address);
+                para.put("USER.GSTIN",cust_gstin);
                 */
+
+                JasperReport js=JasperCompileManager.compileReport(jasdi);
+                JasperPrint jp=JasperFillManager.fillReport(js,para,con);
+                // JasperExportManager.exportReportToHtmlFile(jp ,ore);
+                JasperViewer.viewReport(jp);
             }
         }
         catch (Exception e)
@@ -723,35 +744,7 @@ public class EntryBillFrame extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
         
-        // Generating JASPER REPORTS TRIAL
-        try
-        {
-            JasperDesign jasdi=JRXmlLoader.load("C:\\Users\\HP\\Documents\\NetBeansProjects\\TransactionBilling\\src\\mypackage\\BillReceipt.jrxml");
-            String billquery = "SELECT USER.BILLNO, USER.NAME, USER.CONTACT_NO, USER.ADDRESS, USER.GSTIN, USER.BILL_DATE, USER.TOTAL_AMOUNT, BILL.HSN_CODE, BILL.ITEM_NAME, BILL.QUANTITY, BILL.TAX_SLAB, BILL.SELLING_PRICE, BILL.BASIC_PRICE, BILL.CGST, BILL.SGST, BILL.TOTAL_PRICE FROM BILL, USER WHERE USER.BILLNO = BILL.BILLNO AND BILL.BILLNO = '"+cust_billno+"'";
-            
-           // String billquery = "SELECT * FROM USER WHERE BILLNO = '"+cust_billno+"'";
-            JRDesignQuery newQuery = new JRDesignQuery();
-            newQuery.setText(billquery);
-            jasdi.setQuery(newQuery);
-            
-            HashMap<String, Object> para = new HashMap<>();
-            para.put("BILL.BILLNO",cust_billno);
-            /*
-            para.put("USER.NAME",cust_name);
-            para.put("USER.CONTACT_NO",cust_mobile);
-            para.put("USER.ADDRESS",cust_address);
-            para.put("USER.GSTIN",cust_gstin);
-            */
-            
-            JasperReport js=JasperCompileManager.compileReport(jasdi);
-            JasperPrint jp=JasperFillManager.fillReport(js,para,con);
-            // JasperExportManager.exportReportToHtmlFile(jp ,ore);
-            JasperViewer.viewReport(jp);
-        }
-        catch(Exception e)
-        {
-            JOptionPane.showMessageDialog(null, e);
-        }
+      
     }//GEN-LAST:event_btnGenerateBillActionPerformed
 
     private void cmbItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbItemActionPerformed
