@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="aa79526f-36eb-40db-85d9-0dbe93653f16">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="aa79526f-36eb-40db-85d9-0dbe93653f16">
 	<property name="ireport.zoom" value="1.3310000000000006"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -127,7 +127,7 @@
 				<textFieldExpression><![CDATA[$F{GSTIN}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="75" y="73" width="100" height="20" uuid="a2a15e0f-28f5-4e6d-af7f-6b6c814e0383"/>
+				<reportElement x="75" y="73" width="149" height="20" uuid="a2a15e0f-28f5-4e6d-af7f-6b6c814e0383"/>
 				<textFieldExpression><![CDATA[$F{BILL_DATE}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -200,10 +200,20 @@
 				</textElement>
 				<text><![CDATA[Item Name]]></text>
 			</staticText>
+			<line>
+				<reportElement style="table" x="-1" y="0" width="1" height="35" uuid="3dba96e3-cd53-4332-b8df-ae13de950374">
+					<property name="net.sf.jasperreports.export.pdf.tag.table"/>
+				</reportElement>
+			</line>
+			<line>
+				<reportElement style="table" x="802" y="0" width="1" height="35" uuid="2642ce12-5bb6-4b29-bc93-33879eef22bb">
+					<property name="net.sf.jasperreports.export.pdf.tag.table"/>
+				</reportElement>
+			</line>
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="38" splitType="Stretch">
+		<band height="38" splitType="Prevent">
 			<textField>
 				<reportElement x="340" y="12" width="72" height="20" uuid="dbbb085a-80b8-451d-86eb-51ffac0d42c7"/>
 				<textFieldExpression><![CDATA[$F{QUANTITY}]]></textFieldExpression>
@@ -231,11 +241,6 @@
 				<reportElement x="670" y="12" width="100" height="20" uuid="a5c875fe-b678-4a2f-920f-b219e023769c"/>
 				<textFieldExpression><![CDATA[$F{TOTAL_PRICE}]]></textFieldExpression>
 			</textField>
-			<line>
-				<reportElement style="table" x="801" y="-34" width="1" height="72" uuid="2642ce12-5bb6-4b29-bc93-33879eef22bb">
-					<property name="net.sf.jasperreports.export.pdf.tag.table"/>
-				</reportElement>
-			</line>
 			<textField>
 				<reportElement x="429" y="12" width="38" height="20" uuid="2cb398c9-b80f-4244-8d56-f886c0e89325"/>
 				<textFieldExpression><![CDATA[$F{TAX_SLAB}]]></textFieldExpression>
@@ -244,39 +249,62 @@
 				<reportElement x="124" y="12" width="100" height="20" uuid="5f806fb2-a261-4d10-986e-c7e34fa01d23"/>
 				<textFieldExpression><![CDATA[$F{HSN_CODE}]]></textFieldExpression>
 			</textField>
+			<line>
+				<reportElement style="table" positionType="Float" x="-1" y="0" width="1" height="38" uuid="b5e1b983-7412-43d5-8d19-b5eae7b1edc6"/>
+			</line>
+			<line>
+				<reportElement style="table" x="802" y="0" width="1" height="38" uuid="696d71c5-2402-4106-9490-d75dcd64707f"/>
+			</line>
+			<line>
+				<reportElement x="0" y="37" width="802" height="1" uuid="b9fee574-588d-4513-8384-1af06a676d64"/>
+			</line>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch">
+		<band height="45" splitType="Immediate">
+			<line>
+				<reportElement style="table" positionType="Float" isPrintRepeatedValues="false" x="0" y="0" width="802" height="1" uuid="5e17d0b9-8a21-499d-a982-56e2d8913d8c"/>
+			</line>
+			<line>
+				<reportElement style="table_TD" x="802" y="1" width="1" height="44" uuid="d78907a1-7118-4b06-bfa3-f744a2062223"/>
+			</line>
+			<line>
+				<reportElement style="table" x="-1" y="44" width="802" height="1" uuid="0c349aae-33e3-435d-b035-6325bd968a3a"/>
+			</line>
+			<line>
+				<reportElement style="table_CH" x="-1" y="1" width="1" height="44" uuid="34eb8f2e-1ce1-4d65-b2ad-3a2848bca7cb"/>
+			</line>
+			<staticText>
+				<reportElement x="559" y="10" width="102" height="20" uuid="65a0328c-d1ea-4735-8050-9012529bbfb0"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL_AMOUNT]]></text>
+			</staticText>
 			<textField>
-				<reportElement x="670" y="11" width="111" height="20" uuid="958b1146-08cc-4074-ad98-355e004a929c"/>
+				<reportElement x="670" y="10" width="111" height="20" uuid="958b1146-08cc-4074-ad98-355e004a929c"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{TOTAL_AMOUNT}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="0" width="802" height="1" uuid="5e17d0b9-8a21-499d-a982-56e2d8913d8c"/>
+				<reportElement x="-1" y="43" width="802" height="1" uuid="f0c9648c-0b02-41ec-be49-64cca08ba161"/>
 			</line>
-			<staticText>
-				<reportElement x="563" y="11" width="102" height="20" uuid="65a0328c-d1ea-4735-8050-9012529bbfb0"/>
-				<textElement>
-					<font size="12" isBold="true"/>
-				</textElement>
-				<text><![CDATA[TOTAL_AMOUNT]]></text>
-			</staticText>
 		</band>
 	</columnFooter>
 	<pageFooter>
 		<band height="68" splitType="Stretch">
-			<line>
-				<reportElement style="table" x="-1" y="-118" width="1" height="72" uuid="3dba96e3-cd53-4332-b8df-ae13de950374">
-					<property name="net.sf.jasperreports.export.pdf.tag.table"/>
-				</reportElement>
-			</line>
+			<staticText>
+				<reportElement x="661" y="0" width="129" height="20" uuid="331e623f-91fa-4a54-a06c-1fc5ff9db92a"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[JAIN MOTORS]]></text>
+			</staticText>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</summary>
 </jasperReport>

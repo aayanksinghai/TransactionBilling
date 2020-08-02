@@ -169,7 +169,8 @@ public class EntryBillFrame extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         txtAreaAddress.setColumns(20);
-        txtAreaAddress.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        txtAreaAddress.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtAreaAddress.setLineWrap(true);
         txtAreaAddress.setRows(5);
         jScrollPane1.setViewportView(txtAreaAddress);
 
@@ -364,6 +365,9 @@ public class EntryBillFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tblBill.setRowHeight(22);
+        tblBill.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblBill.getTableHeader().setResizingAllowed(false);
         tblBill.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tblBill);
         if (tblBill.getColumnModel().getColumnCount() > 0) {
