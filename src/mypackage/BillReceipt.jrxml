@@ -45,27 +45,34 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="88" splitType="Stretch">
+		<band height="109" splitType="Stretch">
 			<staticText>
-				<reportElement x="315" y="0" width="275" height="49" uuid="7c9c401a-d744-49df-8f9f-4104657960aa"/>
+				<reportElement x="293" y="10" width="293" height="49" uuid="7c9c401a-d744-49df-8f9f-4104657960aa"/>
 				<textElement>
 					<font size="24" isBold="true"/>
 				</textElement>
-				<text><![CDATA[JAIN MOTORS]]></text>
+				<text><![CDATA[   JAIN MOTORS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="293" y="59" width="297" height="20" uuid="83ce4725-cc88-4329-a69b-eeec79cdcd1e"/>
+				<reportElement x="281" y="79" width="297" height="20" uuid="83ce4725-cc88-4329-a69b-eeec79cdcd1e"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
 				<text><![CDATA[LOHA MANDI, INDORE // Ph: 6262423458]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="590" y="59" width="200" height="20" uuid="68befb04-793d-491d-bf3e-6dc082517b38"/>
+				<reportElement x="590" y="79" width="200" height="20" uuid="68befb04-793d-491d-bf3e-6dc082517b38"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[GSTIN:]]></text>
+				<text><![CDATA[GSTIN: 23AGTPS5187K1ZJ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="311" y="47" width="179" height="32" uuid="c9b8617a-6f42-4159-879d-675ae0f653d0"/>
+				<textElement>
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[MAHAVIR MARKET]]></text>
 			</staticText>
 		</band>
 	</title>
@@ -113,6 +120,9 @@
 			</staticText>
 			<textField>
 				<reportElement x="75" y="42" width="439" height="20" uuid="34cd07f4-91ef-4feb-a9a2-7543c29d4c9d"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{ADDRESS}]]></textFieldExpression>
 			</textField>
 			<staticText>
@@ -145,7 +155,7 @@
 				<reportElement x="0" y="0" width="802" height="1" uuid="9d5686e2-b421-4714-ab4f-fd52036b720a"/>
 			</line>
 			<staticText>
-				<reportElement x="340" y="15" width="72" height="20" uuid="6055b977-d516-4e18-b0dd-a17379b0d41a"/>
+				<reportElement x="321" y="15" width="48" height="20" uuid="6055b977-d516-4e18-b0dd-a17379b0d41a"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -159,35 +169,35 @@
 				<text><![CDATA[HSN Code]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="251" y="15" width="64" height="20" uuid="9bcef59e-0f31-418e-877d-55002202b0ba"/>
+				<reportElement x="241" y="15" width="52" height="20" uuid="9bcef59e-0f31-418e-877d-55002202b0ba"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Price]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="490" y="15" width="57" height="20" uuid="862357f7-b401-484e-8492-cf11548ac159"/>
+				<reportElement x="552" y="15" width="57" height="20" uuid="862357f7-b401-484e-8492-cf11548ac159"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[CGST]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="575" y="15" width="64" height="20" uuid="4dafe67f-f08a-40f0-9e25-158c680b0dff"/>
+				<reportElement x="627" y="15" width="64" height="20" uuid="4dafe67f-f08a-40f0-9e25-158c680b0dff"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[SGST]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="670" y="15" width="100" height="20" uuid="fd39af32-cb85-4369-9a6f-547e9df69ff5"/>
+				<reportElement x="713" y="15" width="77" height="20" uuid="fd39af32-cb85-4369-9a6f-547e9df69ff5"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[Net Amount]]></text>
+				<text><![CDATA[Amount]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="429" y="15" width="38" height="20" uuid="1906163c-88dd-45f7-852c-7b0c9ebc04ac"/>
+				<reportElement x="495" y="15" width="38" height="20" uuid="1906163c-88dd-45f7-852c-7b0c9ebc04ac"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
@@ -210,12 +220,19 @@
 					<property name="net.sf.jasperreports.export.pdf.tag.table"/>
 				</reportElement>
 			</line>
+			<staticText>
+				<reportElement x="393" y="15" width="77" height="20" uuid="3792cbbe-d4ba-4272-ab21-b992c9951976"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[BASIC PRICE]]></text>
+			</staticText>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="38" splitType="Prevent">
 			<textField>
-				<reportElement x="340" y="12" width="72" height="20" uuid="dbbb085a-80b8-451d-86eb-51ffac0d42c7"/>
+				<reportElement x="311" y="12" width="72" height="20" uuid="dbbb085a-80b8-451d-86eb-51ffac0d42c7"/>
 				<textFieldExpression><![CDATA[$F{QUANTITY}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -226,23 +243,23 @@
 				<reportElement x="0" y="0" width="802" height="1" uuid="e01421e3-b885-4bcd-897f-279f2310814a"/>
 			</line>
 			<textField>
-				<reportElement x="251" y="12" width="64" height="20" uuid="a22acc31-d56e-4d54-82ac-3c891335b854"/>
+				<reportElement x="241" y="12" width="52" height="20" uuid="a22acc31-d56e-4d54-82ac-3c891335b854"/>
 				<textFieldExpression><![CDATA[$F{SELLING_PRICE}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="490" y="12" width="57" height="20" uuid="b0b1e3a7-6e7b-463e-b902-13e7a8bbda68"/>
+				<reportElement x="551" y="12" width="57" height="20" uuid="b0b1e3a7-6e7b-463e-b902-13e7a8bbda68"/>
 				<textFieldExpression><![CDATA[$F{CGST}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="575" y="12" width="64" height="20" uuid="3c14462d-e75c-4282-a5fb-445cdfc72959"/>
+				<reportElement x="627" y="12" width="64" height="20" uuid="3c14462d-e75c-4282-a5fb-445cdfc72959"/>
 				<textFieldExpression><![CDATA[$F{SGST}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="670" y="12" width="100" height="20" uuid="a5c875fe-b678-4a2f-920f-b219e023769c"/>
+				<reportElement x="713" y="12" width="88" height="20" uuid="a5c875fe-b678-4a2f-920f-b219e023769c"/>
 				<textFieldExpression><![CDATA[$F{TOTAL_PRICE}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="429" y="12" width="38" height="20" uuid="2cb398c9-b80f-4244-8d56-f886c0e89325"/>
+				<reportElement x="495" y="12" width="38" height="20" uuid="2cb398c9-b80f-4244-8d56-f886c0e89325"/>
 				<textFieldExpression><![CDATA[$F{TAX_SLAB}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -258,6 +275,10 @@
 			<line>
 				<reportElement x="0" y="37" width="802" height="1" uuid="b9fee574-588d-4513-8384-1af06a676d64"/>
 			</line>
+			<textField>
+				<reportElement x="393" y="12" width="85" height="20" uuid="13881c99-7236-48a6-aa64-c327eeafc335"/>
+				<textFieldExpression><![CDATA[$F{BASIC_PRICE}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
@@ -275,14 +296,14 @@
 				<reportElement style="table_CH" x="-1" y="1" width="1" height="44" uuid="34eb8f2e-1ce1-4d65-b2ad-3a2848bca7cb"/>
 			</line>
 			<staticText>
-				<reportElement x="559" y="10" width="102" height="20" uuid="65a0328c-d1ea-4735-8050-9012529bbfb0"/>
+				<reportElement x="608" y="10" width="102" height="20" uuid="65a0328c-d1ea-4735-8050-9012529bbfb0"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>
-				<text><![CDATA[TOTAL_AMOUNT]]></text>
+				<text><![CDATA[TOTAL AMOUNT]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="670" y="10" width="111" height="20" uuid="958b1146-08cc-4074-ad98-355e004a929c"/>
+				<reportElement x="713" y="10" width="77" height="20" uuid="958b1146-08cc-4074-ad98-355e004a929c"/>
 				<textElement>
 					<font size="12" isBold="true"/>
 				</textElement>

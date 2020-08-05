@@ -5,6 +5,8 @@
         <group>
             <file>file:/C:/Users/HP/Documents/NetBeansProjects/TransactionBilling/src/mypackage/BillReceipt.jrxml</file>
             <file>file:/C:/Users/HP/Documents/NetBeansProjects/TransactionBilling/src/mypackage/EntryBillFrame.java</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/TransactionBilling/src/mypackage/LedgerBill.jrxml</file>
+            <file>file:/C:/Users/HP/Documents/NetBeansProjects/TransactionBilling/src/mypackage/SearchBillFrame.java</file>
         </group>
     </open-files>
 </project-private>

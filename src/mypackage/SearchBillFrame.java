@@ -62,6 +62,7 @@ public class SearchBillFrame extends javax.swing.JFrame {
         txtSearch = new javax.swing.JTextField();
         lblError = new javax.swing.JLabel();
         btnFetch = new javax.swing.JButton();
+        btnDownload = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -131,7 +132,7 @@ public class SearchBillFrame extends javax.swing.JFrame {
         jLabel2.setText("SEARCH YOUR BILL BY:");
 
         cmbOptions.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        cmbOptions.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BILLNO", "GSTIN", "CONTACT_NO" }));
+        cmbOptions.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NAME", "BILLNO", "GSTIN", "CONTACT_NO" }));
 
         txtSearch.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -188,29 +189,38 @@ public class SearchBillFrame extends javax.swing.JFrame {
                 .addContainerGap(44, Short.MAX_VALUE))
         );
 
+        btnDownload.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        btnDownload.setText("DOWNLOAD");
+        btnDownload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDownloadActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(260, 260, 260))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jScrollPane1)
-                                .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(123, 123, 123)
-                        .addComponent(btnBack)
-                        .addGap(112, 112, 112)
-                        .addComponent(btnClear)
-                        .addGap(91, 91, 91)
-                        .addComponent(btnGet)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                        .addComponent(jLabel1)
+                        .addGap(260, 260, 260))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jScrollPane1)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(22, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(75, 75, 75)
+                .addComponent(btnBack)
+                .addGap(76, 76, 76)
+                .addComponent(btnClear)
+                .addGap(59, 59, 59)
+                .addComponent(btnGet)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnDownload)
+                .addGap(40, 40, 40))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,7 +235,8 @@ public class SearchBillFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnClear)
                     .addComponent(btnGet)
-                    .addComponent(btnBack))
+                    .addComponent(btnBack)
+                    .addComponent(btnDownload))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
@@ -259,7 +270,14 @@ public class SearchBillFrame extends javax.swing.JFrame {
         {
             if(!searchval.equals(""))
             {
-            if(searchopt.equals("CONTACT_NO") && searchval.length() == 10)
+            if(searchopt.equals("NAME"))
+            {
+              searchval = searchval.toUpperCase();
+              String s = "SELECT * FROM USER WHERE "+searchopt+" = '"+searchval+"' ";
+              rs = stmt.executeQuery(s);
+              lblError.setText("");
+            }
+            else if(searchopt.equals("CONTACT_NO") && searchval.length() == 10)
             {
               String s = "SELECT * FROM USER WHERE "+searchopt+" = '"+searchval+"' ";
               rs = stmt.executeQuery(s);
@@ -371,6 +389,63 @@ public class SearchBillFrame extends javax.swing.JFrame {
         
     }//GEN-LAST:event_txtSearchKeyTyped
 
+    private void btnDownloadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDownloadActionPerformed
+        String searchopt = cmbOptions.getSelectedItem().toString().trim();
+        String searchval = txtSearch.getText().trim();
+        String s = "";
+        try
+        {
+            if(!searchval.equals(""))
+            {
+                if(searchopt.equals("NAME"))
+                {
+                  searchval = searchval.toUpperCase();
+                   s = "SELECT * FROM USER WHERE "+searchopt+" = '"+searchval+"' ";
+                  
+                }
+                else if(searchopt.equals("CONTACT_NO") && searchval.length() == 10)
+                {
+                   s = "SELECT * FROM USER WHERE "+searchopt+" = '"+searchval+"' ";
+                  
+                }
+                else if(searchopt.equals("GSTIN") && searchval.length() == 15)
+                {
+                   s = "SELECT * FROM USER WHERE "+searchopt+" = '"+searchval+"' ";
+                 
+                }
+                else if(searchopt.equals("BILLNO") && searchval.length() == 20)
+                {
+                   s = "SELECT * FROM USER WHERE "+searchopt+" = '"+searchval+"' ";
+                 
+                }
+            
+                // Generating JASPER REPORTS TRIAL
+                JasperDesign jasdi=JRXmlLoader.load("C:\\Users\\HP\\Documents\\NetBeansProjects\\TransactionBilling\\src\\mypackage\\LedgerBill.jrxml");
+        
+                JRDesignQuery newQuery = new JRDesignQuery();
+                newQuery.setText(s);
+                jasdi.setQuery(newQuery);
+
+                HashMap<String, Object> para = new HashMap<>();
+                para.put("KEY",searchval);
+            
+                JasperReport js=JasperCompileManager.compileReport(jasdi);
+                JasperPrint jp=JasperFillManager.fillReport(js,para,con);
+                
+                JasperViewer.viewReport(jp);
+            } 
+            else
+            {
+                lblError.setText("Please search for ledger");
+            }
+        }
+        catch(Exception e)
+        {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        
+    }//GEN-LAST:event_btnDownloadActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -409,6 +484,7 @@ public class SearchBillFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnClear;
+    private javax.swing.JButton btnDownload;
     private javax.swing.JButton btnFetch;
     private javax.swing.JButton btnGet;
     private javax.swing.JComboBox<String> cmbOptions;

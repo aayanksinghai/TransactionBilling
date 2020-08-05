@@ -2,6 +2,7 @@
 package mypackage;
 
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -16,12 +17,14 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import java.util.UUID;
 import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JRDesignQuery;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
+
 import net.sf.jasperreports.view.JasperViewer;
 
 
@@ -563,6 +566,7 @@ public class EntryBillFrame extends javax.swing.JFrame {
                     
                     String delBill = "DELETE FROM USER WHERE BILLNO = '"+cust_billno+"'";
                     stmt.executeUpdate(delBill);
+                    flag = 0;
                     JOptionPane.showMessageDialog(null, "Bill deleted!");
             }
         }
@@ -641,11 +645,10 @@ public class EntryBillFrame extends javax.swing.JFrame {
             basic_price = Double.parseDouble(f.format(basic_price));
             double tax = selling_price - basic_price;
             tax = Double.parseDouble(f.format(tax));
-            cgst = tax / 2;
+            cgst = (tax / 2) * quantity;
             cgst = Double.parseDouble(f.format(cgst));
-            sgst = tax / 2;
+            sgst = tax / 2 * quantity;
             sgst = Double.parseDouble(f.format(sgst));
-        
             total_price = selling_price * quantity;
             total_price = Double.parseDouble(f.format(total_price));
             
@@ -716,7 +719,7 @@ public class EntryBillFrame extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "YOUR BILL IS GENERATED SUCCESSFULLY");
                
                  // Generating JASPER REPORTS TRIAL
-                 JasperDesign jasdi=JRXmlLoader.load("C:\\Users\\HP\\Documents\\NetBeansProjects\\TransactionBilling\\src\\mypackage\\BillReceipt.jrxml");
+                JasperDesign jasdi=JRXmlLoader.load("C:/Users/HP/Documents/NetBeansProjects/TransactionBilling/src/mypackage/BillReceipt.jrxml");
                 String billquery = "SELECT USER.BILLNO, USER.NAME, USER.CONTACT_NO, USER.ADDRESS, USER.GSTIN, USER.BILL_DATE, USER.TOTAL_AMOUNT, BILL.HSN_CODE, BILL.ITEM_NAME, BILL.QUANTITY, BILL.TAX_SLAB, BILL.SELLING_PRICE, BILL.BASIC_PRICE, BILL.CGST, BILL.SGST, BILL.TOTAL_PRICE FROM BILL, USER WHERE USER.BILLNO = BILL.BILLNO AND BILL.BILLNO = '"+cust_billno+"'";
 
                // String billquery = "SELECT * FROM USER WHERE BILLNO = '"+cust_billno+"'";
@@ -732,10 +735,16 @@ public class EntryBillFrame extends javax.swing.JFrame {
                 para.put("USER.ADDRESS",cust_address);
                 para.put("USER.GSTIN",cust_gstin);
                 */
-
+                /*
+                File file = new File("C:\\Users\\HP\\Documents\\NetBeansProjects\\TransactionBilling\\bills\\");
+                file.mkdirs();
+                */
+                
+                
+                
                 JasperReport js=JasperCompileManager.compileReport(jasdi);
                 JasperPrint jp=JasperFillManager.fillReport(js,para,con);
-                // JasperExportManager.exportReportToHtmlFile(jp ,ore);
+                JasperExportManager.exportReportToPdfFile(jp,"C:\\Users\\HP\\Documents\\NetBeansProjects\\TransactionBilling\\Downloads\\bills\\"+cust_billno+".pdf");
                 JasperViewer.viewReport(jp);
             }
         }
