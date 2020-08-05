@@ -102,12 +102,12 @@ public class ViewStocksFrame extends javax.swing.JFrame {
         tblStock.setRowHeight(22);
         jScrollPane1.setViewportView(tblStock);
         if (tblStock.getColumnModel().getColumnCount() > 0) {
-            tblStock.getColumnModel().getColumn(0).setMinWidth(50);
-            tblStock.getColumnModel().getColumn(0).setMaxWidth(150);
-            tblStock.getColumnModel().getColumn(1).setMinWidth(200);
-            tblStock.getColumnModel().getColumn(1).setMaxWidth(270);
-            tblStock.getColumnModel().getColumn(2).setMinWidth(250);
-            tblStock.getColumnModel().getColumn(2).setMaxWidth(500);
+            tblStock.getColumnModel().getColumn(0).setMinWidth(20);
+            tblStock.getColumnModel().getColumn(0).setMaxWidth(50);
+            tblStock.getColumnModel().getColumn(1).setMinWidth(150);
+            tblStock.getColumnModel().getColumn(1).setMaxWidth(200);
+            tblStock.getColumnModel().getColumn(2).setMinWidth(280);
+            tblStock.getColumnModel().getColumn(2).setMaxWidth(600);
             tblStock.getColumnModel().getColumn(3).setMinWidth(50);
             tblStock.getColumnModel().getColumn(3).setMaxWidth(120);
         }
@@ -139,14 +139,14 @@ public class ViewStocksFrame extends javax.swing.JFrame {
                 .addComponent(btnCheckItem)
                 .addGap(141, 141, 141))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(98, Short.MAX_VALUE)
+                .addContainerGap(140, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1039, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(88, 88, 88))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(425, 425, 425))))
+                        .addGap(425, 425, 425))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 968, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(117, 117, 117))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

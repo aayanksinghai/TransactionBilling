@@ -375,12 +375,12 @@ public class EntryBillFrame extends javax.swing.JFrame {
         tblBill.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tblBill);
         if (tblBill.getColumnModel().getColumnCount() > 0) {
-            tblBill.getColumnModel().getColumn(0).setMinWidth(50);
-            tblBill.getColumnModel().getColumn(0).setMaxWidth(100);
-            tblBill.getColumnModel().getColumn(1).setMinWidth(100);
-            tblBill.getColumnModel().getColumn(1).setMaxWidth(250);
-            tblBill.getColumnModel().getColumn(2).setMinWidth(250);
-            tblBill.getColumnModel().getColumn(2).setMaxWidth(400);
+            tblBill.getColumnModel().getColumn(0).setMinWidth(20);
+            tblBill.getColumnModel().getColumn(0).setMaxWidth(50);
+            tblBill.getColumnModel().getColumn(1).setMinWidth(150);
+            tblBill.getColumnModel().getColumn(1).setMaxWidth(200);
+            tblBill.getColumnModel().getColumn(2).setMinWidth(450);
+            tblBill.getColumnModel().getColumn(2).setMaxWidth(600);
             tblBill.getColumnModel().getColumn(3).setMinWidth(100);
             tblBill.getColumnModel().getColumn(3).setMaxWidth(250);
             tblBill.getColumnModel().getColumn(5).setMinWidth(100);
