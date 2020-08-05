@@ -14,6 +14,7 @@ import java.util.HashMap;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -116,14 +117,16 @@ public class SearchBillFrame extends javax.swing.JFrame {
         tblBill.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblBill);
         if (tblBill.getColumnModel().getColumnCount() > 0) {
-            tblBill.getColumnModel().getColumn(0).setMinWidth(100);
-            tblBill.getColumnModel().getColumn(0).setMaxWidth(200);
-            tblBill.getColumnModel().getColumn(1).setResizable(false);
-            tblBill.getColumnModel().getColumn(2).setResizable(false);
-            tblBill.getColumnModel().getColumn(3).setMinWidth(120);
+            tblBill.getColumnModel().getColumn(0).setMinWidth(230);
+            tblBill.getColumnModel().getColumn(0).setMaxWidth(270);
+            tblBill.getColumnModel().getColumn(1).setMinWidth(350);
+            tblBill.getColumnModel().getColumn(1).setMaxWidth(520);
+            tblBill.getColumnModel().getColumn(2).setMinWidth(150);
+            tblBill.getColumnModel().getColumn(2).setMaxWidth(150);
+            tblBill.getColumnModel().getColumn(3).setMinWidth(140);
             tblBill.getColumnModel().getColumn(3).setMaxWidth(250);
-            tblBill.getColumnModel().getColumn(4).setMinWidth(120);
-            tblBill.getColumnModel().getColumn(4).setMaxWidth(250);
+            tblBill.getColumnModel().getColumn(4).setMinWidth(100);
+            tblBill.getColumnModel().getColumn(4).setMaxWidth(120);
         }
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -158,35 +161,33 @@ public class SearchBillFrame extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(261, 261, 261)
                 .addComponent(jLabel2)
-                .addGap(28, 28, 28)
+                .addGap(54, 54, 54)
+                .addComponent(cmbOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
+                .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 362, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(527, 527, 527)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblError, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnFetch)
-                            .addComponent(cmbOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                    .addComponent(btnFetch)
+                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 404, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cmbOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addGap(31, 31, 31)
+                .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(cmbOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblError, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                .addGap(18, 18, 18)
+                .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
                 .addComponent(btnFetch)
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         btnDownload.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -201,43 +202,45 @@ public class SearchBillFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(260, 260, 260))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane1)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(75, 75, 75)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnBack)
-                .addGap(76, 76, 76)
+                .addGap(157, 157, 157)
                 .addComponent(btnClear)
-                .addGap(59, 59, 59)
+                .addGap(148, 148, 148)
                 .addComponent(btnGet)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(147, 147, 147)
                 .addComponent(btnDownload)
-                .addGap(40, 40, 40))
+                .addGap(85, 85, 85))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(479, 479, 479)
+                        .addComponent(jLabel1))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jScrollPane1)))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(23, 23, 23)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnClear)
+                    .addComponent(btnDownload)
                     .addComponent(btnGet)
-                    .addComponent(btnBack)
-                    .addComponent(btnDownload))
-                .addContainerGap(38, Short.MAX_VALUE))
+                    .addComponent(btnClear)
+                    .addComponent(btnBack))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();
@@ -395,7 +398,9 @@ public class SearchBillFrame extends javax.swing.JFrame {
         String s = "";
         try
         {
-            if(!searchval.equals(""))
+            DefaultTableModel model = (DefaultTableModel) tblBill.getModel();
+            int row = model.getRowCount();
+            if(row > 0)
             {
                 if(searchopt.equals("NAME"))
                 {
@@ -431,8 +436,10 @@ public class SearchBillFrame extends javax.swing.JFrame {
             
                 JasperReport js=JasperCompileManager.compileReport(jasdi);
                 JasperPrint jp=JasperFillManager.fillReport(js,para,con);
-                
-                JasperViewer.viewReport(jp);
+                JasperExportManager.exportReportToPdfFile(jp,"C:\\Users\\HP\\Documents\\NetBeansProjects\\TransactionBilling\\Downloads\\ledgers\\"+searchval+".pdf");
+                JOptionPane.showMessageDialog(null, "YOUR LEDGER IS GENERATED SUCCESSFULLY");
+                JasperViewer.viewReport(jp, false);
+                btnClearActionPerformed(evt);
             } 
             else
             {

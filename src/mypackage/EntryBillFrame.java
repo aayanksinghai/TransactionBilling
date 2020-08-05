@@ -20,6 +20,7 @@ import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperPrintManager;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JRDesignQuery;
 import net.sf.jasperreports.engine.design.JasperDesign;
@@ -368,13 +369,11 @@ public class EntryBillFrame extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tblBill.setColumnSelectionAllowed(true);
         tblBill.setRowHeight(22);
         tblBill.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         tblBill.getTableHeader().setResizingAllowed(false);
         tblBill.getTableHeader().setReorderingAllowed(false);
         jScrollPane2.setViewportView(tblBill);
-        tblBill.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (tblBill.getColumnModel().getColumnCount() > 0) {
             tblBill.getColumnModel().getColumn(0).setMinWidth(50);
             tblBill.getColumnModel().getColumn(0).setMaxWidth(100);
@@ -716,7 +715,7 @@ public class EntryBillFrame extends javax.swing.JFrame {
                 double total_amount = Double.parseDouble(txtTotalAmount.getText().trim());
                 String query = "UPDATE USER SET TOTAL_AMOUNT = "+total_amount+" WHERE BILLNO = '"+cust_billno+"'";
                 stmt.executeUpdate(query);
-                JOptionPane.showMessageDialog(null, "YOUR BILL IS GENERATED SUCCESSFULLY");
+                
                
                  // Generating JASPER REPORTS TRIAL
                 JasperDesign jasdi=JRXmlLoader.load("C:/Users/HP/Documents/NetBeansProjects/TransactionBilling/src/mypackage/BillReceipt.jrxml");
@@ -729,23 +728,18 @@ public class EntryBillFrame extends javax.swing.JFrame {
 
                 HashMap<String, Object> para = new HashMap<>();
                 para.put("BILL.BILLNO",cust_billno);
-                /*
-                para.put("USER.NAME",cust_name);
-                para.put("USER.CONTACT_NO",cust_mobile);
-                para.put("USER.ADDRESS",cust_address);
-                para.put("USER.GSTIN",cust_gstin);
-                */
-                /*
-                File file = new File("C:\\Users\\HP\\Documents\\NetBeansProjects\\TransactionBilling\\bills\\");
-                file.mkdirs();
-                */
-                
-                
-                
+              
                 JasperReport js=JasperCompileManager.compileReport(jasdi);
                 JasperPrint jp=JasperFillManager.fillReport(js,para,con);
                 JasperExportManager.exportReportToPdfFile(jp,"C:\\Users\\HP\\Documents\\NetBeansProjects\\TransactionBilling\\Downloads\\bills\\"+cust_billno+".pdf");
-                JasperViewer.viewReport(jp);
+                JOptionPane.showMessageDialog(null, "YOUR BILL IS GENERATED SUCCESSFULLY");
+                dispose();
+                WelcomeFrame open = new WelcomeFrame();
+                open.setVisible(true);
+                
+                JasperViewer.viewReport(jp, false);
+                
+                
             }
         }
         catch (Exception e)

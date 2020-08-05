@@ -100,6 +100,9 @@ public class CustomerDetailsFrame extends javax.swing.JFrame {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
                 {null, null, null, null, null}
             },
             new String [] {
@@ -120,13 +123,15 @@ public class CustomerDetailsFrame extends javax.swing.JFrame {
         tblCustDetails.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblCustDetails);
         if (tblCustDetails.getColumnModel().getColumnCount() > 0) {
-            tblCustDetails.getColumnModel().getColumn(0).setMinWidth(100);
-            tblCustDetails.getColumnModel().getColumn(0).setMaxWidth(200);
-            tblCustDetails.getColumnModel().getColumn(1).setResizable(false);
-            tblCustDetails.getColumnModel().getColumn(2).setResizable(false);
-            tblCustDetails.getColumnModel().getColumn(3).setMinWidth(120);
-            tblCustDetails.getColumnModel().getColumn(3).setMaxWidth(250);
-            tblCustDetails.getColumnModel().getColumn(4).setMinWidth(120);
+            tblCustDetails.getColumnModel().getColumn(0).setMinWidth(230);
+            tblCustDetails.getColumnModel().getColumn(0).setMaxWidth(270);
+            tblCustDetails.getColumnModel().getColumn(1).setMinWidth(350);
+            tblCustDetails.getColumnModel().getColumn(1).setMaxWidth(520);
+            tblCustDetails.getColumnModel().getColumn(2).setMinWidth(150);
+            tblCustDetails.getColumnModel().getColumn(2).setMaxWidth(150);
+            tblCustDetails.getColumnModel().getColumn(3).setMinWidth(100);
+            tblCustDetails.getColumnModel().getColumn(3).setMaxWidth(120);
+            tblCustDetails.getColumnModel().getColumn(4).setMinWidth(140);
             tblCustDetails.getColumnModel().getColumn(4).setMaxWidth(250);
         }
 
@@ -151,27 +156,27 @@ public class CustomerDetailsFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(144, 144, 144)
+                .addGap(327, 327, 327)
                 .addComponent(btnBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 369, Short.MAX_VALUE)
                 .addComponent(btnGetBill)
-                .addGap(96, 96, 96))
+                .addGap(269, 269, 269))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(172, 172, 172)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(228, Short.MAX_VALUE))
+                .addGap(397, 397, 397))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(32, 32, 32)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 526, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGetBill)
