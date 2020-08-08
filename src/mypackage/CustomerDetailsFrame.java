@@ -5,6 +5,7 @@
  */
 package mypackage;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -209,28 +210,25 @@ public class CustomerDetailsFrame extends javax.swing.JFrame {
                 try
                 {
                 String bill_no =  (tblCustDetails.getModel().getValueAt(select,0).toString());
-                // Generating JASPER REPORTS TRIAL
-                 JasperDesign jasdi=JRXmlLoader.load("C:\\Users\\HP\\Documents\\NetBeansProjects\\TransactionBilling\\src\\mypackage\\BillReceipt.jrxml");
+                // Generating JASPER REPORTS 
+                String reportUrl = "/mypackage/BillReceipt.jrxml"; //path of your report source.
+                InputStream reportFile = null;
+                reportFile = getClass().getResourceAsStream(reportUrl);
+                JasperDesign jasdi=JRXmlLoader.load(reportFile);
                 String billquery = "SELECT USER.BILLNO, USER.NAME, USER.CONTACT_NO, USER.ADDRESS, USER.GSTIN, USER.BILL_DATE, USER.TOTAL_AMOUNT, BILL.HSN_CODE, BILL.ITEM_NAME, BILL.QUANTITY, BILL.TAX_SLAB, BILL.SELLING_PRICE, BILL.BASIC_PRICE, BILL.CGST, BILL.SGST, BILL.TOTAL_PRICE FROM BILL, USER WHERE USER.BILLNO = BILL.BILLNO AND BILL.BILLNO = '"+bill_no+"'";
 
-               // String billquery = "SELECT * FROM USER WHERE BILLNO = '"+cust_billno+"'";
+               
                 JRDesignQuery newQuery = new JRDesignQuery();
                 newQuery.setText(billquery);
                 jasdi.setQuery(newQuery);
 
                 HashMap<String, Object> para = new HashMap<>();
                 para.put("BILL.BILLNO",bill_no);
-                /*
-                para.put("USER.NAME",cust_name);
-                para.put("USER.CONTACT_NO",cust_mobile);
-                para.put("USER.ADDRESS",cust_address);
-                para.put("USER.GSTIN",cust_gstin);
-                */
 
                 JasperReport js=JasperCompileManager.compileReport(jasdi);
                 JasperPrint jp=JasperFillManager.fillReport(js,para,con);
-                // JasperExportManager.exportReportToHtmlFile(jp ,ore);
-                JasperViewer.viewReport(jp);
+                
+                JasperViewer.viewReport(jp, false);
                 }
                 catch(Exception e)
                 {

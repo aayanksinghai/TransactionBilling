@@ -5,6 +5,9 @@
  */
 package mypackage;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -28,6 +31,7 @@ public class AddStocksFrame extends javax.swing.JFrame {
 
         initComponents();
         try{
+        
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/BILLING","root","root");
             stmt = con.createStatement();
             txtcode.setVisible(false);
@@ -319,6 +323,11 @@ public class AddStocksFrame extends javax.swing.JFrame {
         jLabel3.setText("Item Name:");
 
         txtHSN.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        txtHSN.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtHSNKeyTyped(evt);
+            }
+        });
 
         txtItem.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
@@ -785,12 +794,12 @@ public class AddStocksFrame extends javax.swing.JFrame {
                 String d_path = lblPath.getText().trim();
                 d_path = d_path.replace(c2,c1);
                 
-                stmt.executeUpdate("TRUNCATE TABLE STOCKS_DUMMY");
+                stmt.executeUpdate("TRUNCATE TABLE STOCKS");
                 
-                String qry = "LOAD DATA LOCAL INFILE '"+d_path+"' INTO TABLE STOCKS_DUMMY FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\\r\\n' IGNORE 1 LINES (@col1,  @col2, @col3) SET HSN_CODE = @col1, ITEM_NAME = @col2, TAX_SLAB = @col3";
+                String qry = "LOAD DATA LOCAL INFILE '"+d_path+"' INTO TABLE STOCKS FIELDS TERMINATED BY ',' ENCLOSED BY '\"' LINES TERMINATED BY '\\r\\n' IGNORE 1 LINES (@col1,  @col2, @col3) SET HSN_CODE = @col1, ITEM_NAME = @col2, TAX_SLAB = @col3";
                 stmt.executeUpdate(qry);
        
-                JOptionPane.showMessageDialog(null,"File Uploaded");
+                JOptionPane.showMessageDialog(null,"STOCKS UPDATED");
                 lblPath.setText("");
             } else {
               
@@ -830,6 +839,16 @@ public class AddStocksFrame extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_lblClickMouseClicked
+
+    private void txtHSNKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtHSNKeyTyped
+
+       char vchar = evt.getKeyChar();
+       if(!(Character.isDigit(vchar)) || (vchar == KeyEvent.VK_BACK_SPACE) || (vchar == KeyEvent.VK_DELETE))
+       {
+           evt.consume();
+       }
+        
+    }//GEN-LAST:event_txtHSNKeyTyped
 
     /**
      * @param args the command line arguments
