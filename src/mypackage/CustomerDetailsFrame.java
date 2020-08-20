@@ -31,6 +31,7 @@ public class CustomerDetailsFrame extends javax.swing.JFrame {
     public CustomerDetailsFrame() {
         initComponents();
         try{
+            this.setExtendedState(CustomerDetailsFrame.MAXIMIZED_BOTH);
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/BILLING","root","root");
             stmt = con.createStatement();
             
@@ -79,6 +80,9 @@ public class CustomerDetailsFrame extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
         jLabel1.setText("View Customer Details");
+        jLabel1.setAutoscrolls(true);
+
+        jScrollPane1.setAutoscrolls(true);
 
         tblCustDetails.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         tblCustDetails.setModel(new javax.swing.table.DefaultTableModel(
@@ -138,6 +142,7 @@ public class CustomerDetailsFrame extends javax.swing.JFrame {
 
         btnBack.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnBack.setText("<BACK");
+        btnBack.setAutoscrolls(true);
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
@@ -146,6 +151,7 @@ public class CustomerDetailsFrame extends javax.swing.JFrame {
 
         btnGetBill.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         btnGetBill.setText("GET BILL");
+        btnGetBill.setAutoscrolls(true);
         btnGetBill.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGetBillActionPerformed(evt);
@@ -158,30 +164,30 @@ public class CustomerDetailsFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(327, 327, 327)
-                .addComponent(btnBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 369, Short.MAX_VALUE)
-                .addComponent(btnGetBill)
+                .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(369, 369, 369)
+                .addComponent(btnGetBill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(269, 269, 269))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addGap(418, 418, 418)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(397, 397, 397))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnGetBill)
-                    .addComponent(btnBack))
+                    .addComponent(btnGetBill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(25, 25, 25))
         );
 
