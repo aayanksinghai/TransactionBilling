@@ -84,7 +84,7 @@ public class CustomerDetailsFrame extends javax.swing.JFrame {
 
         jScrollPane1.setAutoscrolls(true);
 
-        tblCustDetails.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        tblCustDetails.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         tblCustDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -128,7 +128,7 @@ public class CustomerDetailsFrame extends javax.swing.JFrame {
         tblCustDetails.getTableHeader().setReorderingAllowed(false);
         jScrollPane1.setViewportView(tblCustDetails);
         if (tblCustDetails.getColumnModel().getColumnCount() > 0) {
-            tblCustDetails.getColumnModel().getColumn(0).setMinWidth(230);
+            tblCustDetails.getColumnModel().getColumn(0).setMinWidth(200);
             tblCustDetails.getColumnModel().getColumn(0).setMaxWidth(270);
             tblCustDetails.getColumnModel().getColumn(1).setMinWidth(350);
             tblCustDetails.getColumnModel().getColumn(1).setMaxWidth(520);
@@ -163,28 +163,27 @@ public class CustomerDetailsFrame extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(327, 327, 327)
+                .addGap(234, 234, 234)
                 .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(369, 369, 369)
+                .addGap(148, 148, 148)
                 .addComponent(btnGetBill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(269, 269, 269))
+                .addGap(155, 155, 155))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(418, 418, 418)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(397, 397, 397))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1028, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(273, 273, 273)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 597, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
+                .addGap(25, 25, 25)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnGetBill, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
