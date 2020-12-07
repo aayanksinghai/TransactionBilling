@@ -61,13 +61,6 @@
 				<text><![CDATA[LOHA MANDI, INDORE // Ph: 6262423458]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="369" y="45" width="145" height="20" uuid="68befb04-793d-491d-bf3e-6dc082517b38"/>
-				<textElement>
-					<font size="10" isBold="true"/>
-				</textElement>
-				<text><![CDATA[GSTIN: 23AGTPS5187K1ZJ]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="216" y="24" width="118" height="18" uuid="c9b8617a-6f42-4159-879d-675ae0f653d0"/>
 				<textElement>
 					<font size="12" isBold="true"/>
