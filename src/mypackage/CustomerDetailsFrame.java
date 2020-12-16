@@ -75,6 +75,7 @@ public class CustomerDetailsFrame extends javax.swing.JFrame {
         tblCustDetails = new javax.swing.JTable();
         btnBack = new javax.swing.JButton();
         btnGetBill = new javax.swing.JButton();
+        btnDeleteBill = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -158,6 +159,15 @@ public class CustomerDetailsFrame extends javax.swing.JFrame {
             }
         });
 
+        btnDeleteBill.setFont(new java.awt.Font("Tahoma", 1, 22)); // NOI18N
+        btnDeleteBill.setText("DELETE BILL");
+        btnDeleteBill.setAutoscrolls(true);
+        btnDeleteBill.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteBillActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -167,15 +177,18 @@ public class CustomerDetailsFrame extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1028, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addGap(273, 273, 273)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(273, 273, 273)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 441, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(226, 226, 226)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58)
+                        .addComponent(btnDeleteBill, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(64, 64, 64)
+                        .addComponent(btnGetBill, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(226, 226, 226)
-                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnGetBill, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(212, 212, 212))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -187,7 +200,8 @@ public class CustomerDetailsFrame extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGetBill, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnGetBill, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDeleteBill, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 10, Short.MAX_VALUE))
         );
 
@@ -243,6 +257,45 @@ public class CustomerDetailsFrame extends javax.swing.JFrame {
             }
     }//GEN-LAST:event_btnGetBillActionPerformed
 
+    private void btnDeleteBillActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteBillActionPerformed
+            DefaultTableModel model = (DefaultTableModel) tblCustDetails.getModel();
+            int select = tblCustDetails.getSelectedRow();
+            if(select == -1)
+            {
+                
+            }
+            else
+            {
+                try
+                {
+                String bill_no =  (tblCustDetails.getModel().getValueAt(select,0).toString());
+                
+                String passcode = JOptionPane.showInputDialog("Enter the passcode").trim();
+                    if(passcode.equals("1234"))
+                    {
+                        String qry1 = "DELETE FROM BILL WHERE BILLNO = '"+bill_no+"' ";
+                        stmt.executeUpdate(qry1);
+                        String qry2 = "DELETE FROM USER WHERE BILLNO = '"+bill_no+"' ";
+                        stmt.executeUpdate(qry2);
+                        JOptionPane.showMessageDialog(null, "ITEM DELETED for BILL NO: " + bill_no);
+                        this.setVisible(false);
+                        dispose();
+                        CustomerDetailsFrame op = new CustomerDetailsFrame();
+                        op.setVisible(true);
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "Incorrect Passcode! Please Try Again!");
+                    }
+                
+                }
+                catch(Exception e)
+                {
+                    JOptionPane.showMessageDialog(null, e);
+                }
+            }
+    }//GEN-LAST:event_btnDeleteBillActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -280,6 +333,7 @@ public class CustomerDetailsFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnDeleteBill;
     private javax.swing.JButton btnGetBill;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
