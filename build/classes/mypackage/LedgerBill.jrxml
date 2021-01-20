@@ -14,14 +14,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="103" splitType="Stretch">
-			<staticText>
-				<reportElement x="316" y="33" width="179" height="32" uuid="22480de2-37d0-4719-a06e-3c5583c80240"/>
-				<textElement>
-					<font size="18" isBold="true"/>
-				</textElement>
-				<text><![CDATA[MAHAVIR MARKET]]></text>
-			</staticText>
+		<band height="54" splitType="Stretch">
 			<staticText>
 				<reportElement x="301" y="0" width="227" height="33" uuid="ffa26e85-bbc4-4ae6-a7c0-1caa26e38121"/>
 				<textElement>
@@ -30,7 +23,7 @@
 				<text><![CDATA[   JAIN MOTORS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="289" y="77" width="239" height="20" uuid="77329022-17eb-417a-b902-1d4642f98064"/>
+				<reportElement x="289" y="33" width="239" height="20" uuid="77329022-17eb-417a-b902-1d4642f98064"/>
 				<textElement>
 					<font size="12"/>
 				</textElement>
@@ -39,11 +32,11 @@
 		</band>
 	</title>
 	<pageHeader>
-		<band height="28" splitType="Stretch">
+		<band height="18" splitType="Stretch">
 			<staticText>
-				<reportElement x="368" y="4" width="89" height="22" uuid="2c18ae1c-e301-487c-90fd-54626020d755"/>
-				<textElement>
-					<font size="16" isBold="true"/>
+				<reportElement x="374" y="0" width="89" height="16" uuid="2c18ae1c-e301-487c-90fd-54626020d755"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
 				</textElement>
 				<text><![CDATA[LEDGER]]></text>
 			</staticText>
@@ -158,7 +151,7 @@
 				<reportElement x="0" y="0" width="801" height="1" isPrintWhenDetailOverflows="true" uuid="f902539e-4477-4fde-a531-c3f99ea7cd8f"/>
 			</line>
 			<staticText>
-				<reportElement x="665" y="12" width="124" height="22" uuid="a43f3e1c-d423-4b2e-9c20-52ee05ebdc21"/>
+				<reportElement x="674" y="9" width="124" height="22" uuid="a43f3e1c-d423-4b2e-9c20-52ee05ebdc21"/>
 				<textElement>
 					<font size="16" isBold="true"/>
 				</textElement>
