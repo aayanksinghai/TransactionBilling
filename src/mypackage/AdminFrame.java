@@ -21,7 +21,7 @@ public class AdminFrame extends javax.swing.JFrame {
     public AdminFrame() {
         initComponents();
         try{
-            this.setExtendedState(AdminFrame.MAXIMIZED_BOTH);
+//            this.setExtendedState(AdminFrame.MAXIMIZED_BOTH);
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/BILLING","root","root");
             stmt = con.createStatement();
            }

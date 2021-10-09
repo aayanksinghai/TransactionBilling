@@ -24,7 +24,7 @@ public class LoginFrame extends javax.swing.JFrame {
     public LoginFrame() {
         initComponents();
         try{
-            this.setExtendedState(LoginFrame.MAXIMIZED_BOTH);
+//            this.setExtendedState(LoginFrame.MAXIMIZED_BOTH);
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/BILLING","root","root");
             stmt = con.createStatement();
            

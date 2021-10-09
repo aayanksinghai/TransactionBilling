@@ -23,7 +23,7 @@ public class WelcomeFrame extends javax.swing.JFrame {
     public WelcomeFrame() {
         initComponents();
         try{
-            this.setExtendedState(WelcomeFrame.MAXIMIZED_BOTH);
+//            this.setExtendedState(WelcomeFrame.MAXIMIZED_BOTH);
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/BILLING","root","root");
             stmt = con.createStatement();
            }

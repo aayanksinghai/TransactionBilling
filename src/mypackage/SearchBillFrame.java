@@ -35,7 +35,7 @@ public class SearchBillFrame extends javax.swing.JFrame {
     public SearchBillFrame() {
         initComponents();
         try{
-            this.setExtendedState(SearchBillFrame.MAXIMIZED_BOTH);
+//            this.setExtendedState(SearchBillFrame.MAXIMIZED_BOTH);
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/BILLING","root","root");
             stmt = con.createStatement();
            }

@@ -22,7 +22,7 @@ public class ViewStocksFrame extends javax.swing.JFrame {
     public ViewStocksFrame() {
         initComponents();
         try{
-            this.setExtendedState(ViewStocksFrame.MAXIMIZED_BOTH);
+//            this.setExtendedState(ViewStocksFrame.MAXIMIZED_BOTH);
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/BILLING","root","root");
             stmt = con.createStatement();
             

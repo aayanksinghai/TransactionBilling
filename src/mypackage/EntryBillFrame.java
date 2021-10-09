@@ -44,7 +44,7 @@ public class EntryBillFrame extends javax.swing.JFrame {
     public EntryBillFrame() {
         initComponents();
         try{
-            this.setExtendedState(EntryBillFrame.MAXIMIZED_BOTH);
+//            this.setExtendedState(EntryBillFrame.MAXIMIZED_BOTH);
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/BILLING","root","root");
             stmt = con.createStatement();
             

@@ -31,7 +31,7 @@ public class CustomerDetailsFrame extends javax.swing.JFrame {
     public CustomerDetailsFrame() {
         initComponents();
         try{
-            this.setExtendedState(CustomerDetailsFrame.MAXIMIZED_BOTH);
+//            this.setExtendedState(CustomerDetailsFrame.MAXIMIZED_BOTH);
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/BILLING","root","root");
             stmt = con.createStatement();
             

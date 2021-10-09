@@ -31,7 +31,7 @@ public class AddStocksFrame extends javax.swing.JFrame {
 
         initComponents();
         try{
-            this.setExtendedState(AddStocksFrame.MAXIMIZED_BOTH);
+//            this.setExtendedState(AddStocksFrame.MAXIMIZED_BOTH);
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/BILLING","root","root");
             stmt = con.createStatement();
             txtcode.setVisible(false);
